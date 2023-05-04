@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dokka)
     `maven-publish`
+    `signing`
 }
 
 android {
@@ -73,6 +74,17 @@ dependencies {
     testImplementation(libs.androidx.test.ext.junit)
 }
 
+val sonatypeUsername = if (rootProject.hasProperty("sonatypeUsername")) {
+    rootProject.property("sonatypeUsername") as String
+} else {
+    ""
+}
+val sonatypePassword = if (rootProject.hasProperty("sonatypePassword")) {
+    rootProject.property("sonatypePassword") as String
+} else {
+    ""
+}
+
 publishing {
     publications {
         register<MavenPublication>("release") {
@@ -107,4 +119,19 @@ publishing {
             }
         }
     }
+    repositories {
+        maven {
+            val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            credentials {
+                username = sonatypeUsername
+                password = sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications)
 }
