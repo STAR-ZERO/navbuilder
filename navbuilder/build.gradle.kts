@@ -96,7 +96,7 @@ publishing {
             }
             pom {
                 name.set("Nav Builder")
-                description.set("Generate navigation destination for Compose Navigation by DSL.")
+                description.set("Generate navigation destination for Navigation Compose by DSL.")
                 url.set("https://github.com/STAR-ZERO/navbuilder")
                 licenses {
                     license {

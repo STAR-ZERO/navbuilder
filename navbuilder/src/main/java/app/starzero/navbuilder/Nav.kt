@@ -43,12 +43,12 @@ public class Nav internal constructor(
         }
 
     /**
-     * Returns the generated route string for compose navigation.
+     * Returns the generated route string for Navigation Compose.
      * The route string is generated based on the name of this destination and its arguments.
      * The format of the route string is "name/{arg1}?arg2={arg2}".
      * If there are no arguments, the route string will be "name".
      *
-     * @return The generated route string for compose navigation.
+     * @return The generated route string for Navigation Compose.
      */
     public val route: String = buildString {
         append(name)
@@ -63,10 +63,10 @@ public class Nav internal constructor(
     }
 
     /**
-     * Returns a list of [NamedNavArgument] objects for compose navigation.
+     * Returns a list of [NamedNavArgument] objects for Navigation Compose.
      * The list includes both required and optional arguments.
      *
-     * @return A list of [NamedNavArgument] objects for compose navigation.
+     * @return A list of [NamedNavArgument] objects for Navigation Compose.
      */
     public val navArguments: List<NamedNavArgument> = arguments.map { arg ->
         navArgument(
@@ -187,7 +187,7 @@ public class NavBuilder internal constructor(private val name: String) {
  * Creates a [Nav] object that represents a navigation destination with the given name and arguments.
  *
  * Arguments can be optional or required. The [Nav] object provides utilities for generating a route string and
- * a list of named arguments for use in Compose Navigation.
+ * a list of named arguments for use in Navigation Compose.
  * It also provides a method, [Nav.generateNavigateRoute], for generating a navigate route to
  * the destination with the specified arguments.
  *
